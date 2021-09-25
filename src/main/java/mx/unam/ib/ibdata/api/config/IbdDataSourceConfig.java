@@ -45,13 +45,15 @@ public class IbdDataSourceConfig {
 		factory.setJpaVendorAdapter(vendorAdapter);
 		factory.setPackagesToScan("mx.unam.ib.ibdata.api.model.entity");
 		factory.setDataSource(dataSource);
-		factory.afterPropertiesSet();
+		
 		
 		Properties jpaProperties = new Properties(); 
 		jpaProperties.put("hibernate.show_sql", true);
 		jpaProperties.put("hibernate.format_sql", true);
 		
 		factory.setJpaProperties(jpaProperties);
+		
+		factory.afterPropertiesSet();
 		
 		return factory.getObject();
 	}

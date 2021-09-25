@@ -12,7 +12,7 @@ public class IbdUserVO extends IbdGenericResponse{
 	@ApiModelProperty(
 			name = "id"
 			,notes = "Identificador unico de usuario"
-			,example ="93829"
+			,example ="580cc324-10ba-11ec-b143-085bd6073280"
 //			,dataType = "Long"
 			,position = 1)
 	private UUID id;

@@ -4,7 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,9 +26,9 @@ import mx.unam.ib.ibdata.api.model.vo.IbdUserVO;
 import mx.unam.ib.ibdata.api.service.IbdServiceDemoInterface;
 import mx.unam.ib.ibdata.api.utils.IbdContants;
 
-@Api(value = IbdContants.BASE_PATH_V1 + IbdContants.BASE_PATH_M1 , tags = {"1: DEMO"}, description = "Modulo de...")
-@RestController
-@RequestMapping(IbdContants.BASE_PATH_V1 + IbdContants.BASE_PATH_M1)
+//@Api(value = IbdContants.BASE_PATH_V1 + IbdContants.BASE_PATH_M1 , tags = {"1: DEMO"}, description = "Modulo de...")
+//@RestController
+//@RequestMapping(IbdContants.BASE_PATH_V1 + IbdContants.BASE_PATH_M1)
 public class IbdDemoController {
 	
 	private static final Logger logger = LogManager.getLogger(IbdDemoController.class);
@@ -66,6 +68,20 @@ public class IbdDemoController {
 	
 	@GetMapping("/gretting")
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+		String response = String.format("Hello %s!", name);
+		System.out.println("response:" + response);
+	return response;
+	}
+	
+	@PutMapping("/gretting2")
+	public String hello2(@RequestParam(value = "name", defaultValue = "World") String name) {
+		String response = String.format("Hello %s!", name);
+		System.out.println("response:" + response);
+	return response;
+	}
+	
+	@DeleteMapping("/gretting3")
+	public String hello3(@RequestParam(value = "name", defaultValue = "World") String name) {
 		String response = String.format("Hello %s!", name);
 		System.out.println("response:" + response);
 	return response;

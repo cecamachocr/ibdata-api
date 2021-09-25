@@ -52,4 +52,4 @@ war {
 }
 
 //
-//gradle clean build bootRun --debug-jvm --console=plain
+//gradle clean build bootRun --console=plain --debug-jvm 

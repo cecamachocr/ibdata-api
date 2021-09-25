@@ -11,8 +11,10 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import mx.unam.ib.ibdata.api.utils.IbdContants;
+
 @Entity
-@Table(schema = "ibdata_api", name = "ibd001_user")
+@Table(schema = IbdContants.SCHEMA_VHO_IBDATA_API, name = "ibd001_user")
 public class IbdUserEntity implements Serializable{
 
 	/**
