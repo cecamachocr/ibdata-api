@@ -6,4 +6,7 @@ import mx.unam.ib.ibdata.api.model.vo.IbdDatOcurrenceVO;
 public interface IbdDatOccurrenceServiceInterface {
 	
 	public IbdDatOcurrenceVO findUserByIdCountry(IbdDatOccurrenceCriteriaVO req) throws Exception;
+	
+	
+	public IbdDatOcurrenceVO findUserByIdCountryDAO(IbdDatOccurrenceCriteriaVO req) throws Exception;
 }

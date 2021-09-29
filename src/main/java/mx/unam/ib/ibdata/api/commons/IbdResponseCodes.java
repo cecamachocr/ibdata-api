@@ -8,7 +8,8 @@ public enum IbdResponseCodes {
 	
 	//erros
 	ERROR_INTERNAL_ERROR("-1", "Error inesperado"),
-	ERROR_BAD_REQUEST("-2","Peticion incorrecta")
+	ERROR_BAD_REQUEST("-2","Petición incorrecta"),
+	ERROR_HTTPS_400_BAD_REQUEST("400", "Bad Request")
 	;
 	
 	private final String code;

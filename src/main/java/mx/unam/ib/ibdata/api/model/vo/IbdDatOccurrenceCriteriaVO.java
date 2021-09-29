@@ -1,5 +1,11 @@
 package mx.unam.ib.ibdata.api.model.vo;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.lang.NonNull;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -28,6 +34,8 @@ public class IbdDatOccurrenceCriteriaVO  extends IbdCriteriaGeneric{
 			,example ="1010"
 //			,dataType = "Long"
 			,position = 2)
+	@Min(1)
+	@NotNull
 	private Integer idCountry;
 	
 	

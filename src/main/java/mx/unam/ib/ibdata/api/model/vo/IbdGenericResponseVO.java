@@ -1,11 +1,18 @@
 package mx.unam.ib.ibdata.api.model.vo;
 
+import java.io.Serializable;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(value= "IbdGenericResponseVO", description = "Objeto generico de respuesta")
-public class IbdGenericResponseVO {
+public class IbdGenericResponseVO implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@ApiModelProperty(
 			name = "success"
 			,notes = "indicador de proceso exitoso"

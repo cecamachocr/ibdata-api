@@ -16,4 +16,6 @@ public interface IbdDatOcurrenceRepository extends PagingAndSortingRepository<Ib
 	
 	public List<IbdDatOcurrenceEntity> findAllByIdCountryOrderByOccurrenceIdDesc(Integer idCountry, Pageable pageable);
 	
+	public Long countByIdCountry(Integer idCountry);
+	
 }

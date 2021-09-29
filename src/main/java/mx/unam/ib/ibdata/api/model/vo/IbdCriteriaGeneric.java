@@ -2,6 +2,9 @@ package mx.unam.ib.ibdata.api.model.vo;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -22,6 +25,8 @@ public class IbdCriteriaGeneric implements Serializable{
 			,example ="1"
 //			,dataType = "Long"
 			,position = 1)
+	@Min(1)
+	@Max(10000)
 	private int pageNum;
 	
 	
@@ -31,6 +36,8 @@ public class IbdCriteriaGeneric implements Serializable{
 			,example ="1"
 //			,dataType = "Long"
 			,position = 2)
+	@Min(1)
+	@Max(100)
 	private int pageLimit;
 
 	public int getPageNum() {
