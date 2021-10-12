@@ -8,6 +8,8 @@ public class IbdContants {
 	
 	public static final String BASE_PATH_MODULE_DAT_OCCURRENCE = "/datOccurrence";
 	
+	public static final String BASE_PATH_MODULE_REPORT_GENERIC = "/report/generic";
+	
 	
 	public static final String SCHEMA_VHO_PUBLIC = "public";
 	

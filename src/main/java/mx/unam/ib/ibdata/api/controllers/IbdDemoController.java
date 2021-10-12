@@ -2,6 +2,8 @@ package mx.unam.ib.ibdata.api.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,19 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import mx.unam.ib.ibdata.api.model.vo.IbdUserVO;
 import mx.unam.ib.ibdata.api.service.IbdServiceDemoInterface;
-import mx.unam.ib.ibdata.api.utils.IbdContants;
 
 //@Api(value = IbdContants.BASE_PATH_V1 + IbdContants.BASE_PATH_M1 , tags = {"1: DEMO"}, description = "Modulo de...")
 //@RestController

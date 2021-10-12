@@ -1,17 +1,14 @@
 package mx.unam.ib.ibdata.api.model.vo;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.lang.NonNull;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 
 @ApiModel(value= "IbdCriteriaDatOccurrenceVO", description = "Objeto del consulta para la tabla dat_occurrence")
-public class IbdDatOccurrenceCriteriaVO  extends IbdCriteriaGeneric{
+public class IbdDatOccurrenceCriteriaVO  extends IbdGenericCriteria{
 	
 	
 	/**
@@ -55,6 +52,8 @@ public class IbdDatOccurrenceCriteriaVO  extends IbdCriteriaGeneric{
 //			,dataType = "Long"
 			,position = 4)
 	private String acceptedNameUsage;
+	
+	
 
 	public String getOccurrenceId() {
 		return occurrenceId;

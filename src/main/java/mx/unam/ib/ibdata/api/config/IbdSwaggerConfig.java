@@ -27,7 +27,7 @@ public class IbdSwaggerConfig {
 	
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("IBData API")
+				.title("IBdata API")
 				.description("API RESTFul del Instituto de Biologia de la UNAM")
 				.license("Licencia de desarrollo por Instituto de Biologia de la UNAM")
 				.version("1.0").build();

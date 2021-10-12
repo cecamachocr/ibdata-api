@@ -216,6 +216,7 @@ public class IbdDatOcurrenceDAOImpl implements IbdDatOcurrenceDAOInterface {
 			 count = cstmt.getInt(1);
 			
 			logger.error(count);
+			logger.debug("Debug");
 			
 			long endTime = System.currentTimeMillis();
 			

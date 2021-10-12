@@ -25,7 +25,7 @@ import mx.unam.ib.ibdata.api.model.vo.IbdDatOcurrenceVO;
 import mx.unam.ib.ibdata.api.service.IbdDatOccurrenceServiceInterface;
 import mx.unam.ib.ibdata.api.utils.IbdContants;
 
-@Api(value = IbdContants.BASE_PATH_V1 + IbdContants.BASE_PATH_MODULE_DAT_OCCURRENCE , tags = {"1: Dat_occurrence"}, description = "Modulo de consultas a dat_occurrence")
+@Api(value = IbdContants.BASE_PATH_V1 + IbdContants.BASE_PATH_MODULE_DAT_OCCURRENCE , tags = {"1: DAT OCCURRENCE"}, description = "Modulo de consultas a dat_occurrence")
 @RestController
 @RequestMapping(IbdContants.BASE_PATH_V1 + IbdContants.BASE_PATH_MODULE_DAT_OCCURRENCE)
 @Validated
@@ -40,7 +40,8 @@ public class IbdDatOccurrenceController {
 	@ApiOperation(
 			value= "findByIdCountry"
 			, notes = "Obtiene informacion de occurrence por el id country"
-			, nickname = "operation_1")
+			, nickname = "operation_1"
+			, position = 1)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Proceso finalizado correctamente", response = IbdDatOcurrenceVO.class),
 			@ApiResponse(code = 400, message = "Peticion Incorrecta", response = IbdValidationErrorResponse.class),
@@ -68,7 +69,8 @@ public class IbdDatOccurrenceController {
 	@ApiOperation(
 			value= "findByIdCountry"
 			, notes = "Obtiene informacion de occurrence por el id country"
-			, nickname = "operation_1")
+			, nickname = "operation_2"
+			, position = 2)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Proceso finalizado correctamente", response = IbdDatOcurrenceVO.class),
 			@ApiResponse(code = 400, message = "Peticion Incorrecta", response = IbdValidationErrorResponse.class),
@@ -81,6 +83,7 @@ public class IbdDatOccurrenceController {
 			, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody ResponseEntity<?> findByIdCountryDAO(HttpServletRequest request, @Valid @RequestBody IbdDatOccurrenceCriteriaVO criteria) throws Exception{
 		try {
+			logger.error(criteria.toString());
 			
 			return ResponseEntity.ok().body(service.findUserByIdCountryDAO(criteria));
 			
@@ -91,4 +94,5 @@ public class IbdDatOccurrenceController {
 		
 		
 	}
+      
 }

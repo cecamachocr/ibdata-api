@@ -1,6 +1,5 @@
 package mx.unam.ib.ibdata.api.service;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 import mx.unam.ib.ibdata.api.dao.IbdDatOcurrenceDAOInterface;
 import mx.unam.ib.ibdata.api.dao.IbdDemoDAOInterface;
 import mx.unam.ib.ibdata.api.model.entity.IbdDatOcurrenceEntity;
-import mx.unam.ib.ibdata.api.model.entity.IbdUserEntity;
 import mx.unam.ib.ibdata.api.model.vo.IbdUserVO;
 import mx.unam.ib.ibdata.api.repository.IbdDatOcurrenceRepository;
 import mx.unam.ib.ibdata.api.repository.IbdUserRepository;
@@ -38,7 +36,6 @@ public class IbdServiceDemoImpl implements IbdServiceDemoInterface{
 	
 	@Override
 	public IbdUserVO findUserByName(IbdUserVO req) throws Exception {
-		IbdUserEntity resEntity = null;
 		
 		IbdUserVO res = null;
 		

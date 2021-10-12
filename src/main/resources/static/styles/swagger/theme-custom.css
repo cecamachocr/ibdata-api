@@ -1290,7 +1290,7 @@
 .swagger-ui .topbar .download-url-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex
+  display: none
 }
 
 .swagger-ui .topbar .download-url-wrapper input[type=text] {

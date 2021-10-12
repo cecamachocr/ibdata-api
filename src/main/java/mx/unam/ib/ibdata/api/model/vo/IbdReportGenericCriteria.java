@@ -9,8 +9,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 
-@ApiModel(value= "IbdCriteriaGeneric", description = "Objeto generico de criterios de busqueda")
-public class IbdCriteriaGeneric implements Serializable{
+@ApiModel(value= "IbdReportGenericCriteria", description = "Objeto generico de criterios de busqueda para reportes")
+public class IbdReportGenericCriteria implements Serializable{
 	
 	
 	/**
@@ -18,10 +18,17 @@ public class IbdCriteriaGeneric implements Serializable{
 	 */
 	private static final long serialVersionUID = -2655331247639483694L;
 	
+	@ApiModelProperty(
+			name = "reportId"
+			,notes = "Identificador unico de reporte"
+//			,dataType = "Long"
+			,position = 4)
+	private Long reportId;
+	
 	
 	@ApiModelProperty(
 			name = "pageNum"
-			,notes = "Numero de pagina de consulta"
+			,notes = "Numero de pagina solicitada"
 			,example ="1"
 //			,dataType = "Long"
 			,position = 1)
@@ -31,8 +38,8 @@ public class IbdCriteriaGeneric implements Serializable{
 	
 	
 	@ApiModelProperty(
-			name = "pageNum"
-			,notes = "Numero de registros por pagina"
+			name = "pageLimit"
+			,notes = "Numero de registros por pagina solicitados"
 			,example ="1"
 //			,dataType = "Long"
 			,position = 2)
@@ -40,21 +47,37 @@ public class IbdCriteriaGeneric implements Serializable{
 	@Max(100)
 	private int pageLimit;
 
+
+	public Long getReportId() {
+		return reportId;
+	}
+
+
+	public void setReportId(Long reportId) {
+		this.reportId = reportId;
+	}
+
+
 	public int getPageNum() {
 		return pageNum;
 	}
+
 
 	public void setPageNum(int pageNum) {
 		this.pageNum = pageNum;
 	}
 
+
 	public int getPageLimit() {
 		return pageLimit;
 	}
 
+
 	public void setPageLimit(int pageLimit) {
 		this.pageLimit = pageLimit;
 	}
+
+
 	
 	
 	
