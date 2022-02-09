@@ -8,4 +8,6 @@ public interface IbdGenericReportServiceInterface {
 	
 	public ByteArrayOutputStream downloadReport(IbdReportCriteria req) throws Exception;
 	
+	public ByteArrayOutputStream downloadFileReport(String query) throws Exception;
+	
 }

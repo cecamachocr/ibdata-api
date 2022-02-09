@@ -11,8 +11,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -23,8 +23,7 @@ import mx.unam.ib.ibdata.api.utils.IbdContants;
 @Repository
 public class IbdDatOcurrenceDAOImpl implements IbdDatOcurrenceDAOInterface {
 	
-	private static final Logger logger = LogManager.getLogger(IbdDatOcurrenceDAOImpl.class);
-	
+	private static final Logger logger = LoggerFactory.getLogger(IbdDatOcurrenceDAOImpl.class);
 	
 	private String schema = IbdContants.SCHEMA_VHO_PUBLIC;
 	
@@ -185,7 +184,6 @@ public class IbdDatOcurrenceDAOImpl implements IbdDatOcurrenceDAOInterface {
 		
 		String fnName = "fn_oc_getbyidcountry_count";
 		
-		List<IbdDatOcurrenceEntity> lisrResult = new ArrayList<IbdDatOcurrenceEntity>();
 		try {
 			conn = dataSource.getConnection();
 			conn.setAutoCommit(false);
@@ -213,9 +211,9 @@ public class IbdDatOcurrenceDAOImpl implements IbdDatOcurrenceDAOInterface {
 			
 			cstmt.execute();
 			
-			 count = cstmt.getInt(1);
+			count = cstmt.getInt(1);
 			
-			logger.error(count);
+			logger.info("total_rows:[" + count + "]");
 			logger.debug("Debug");
 			
 			long endTime = System.currentTimeMillis();

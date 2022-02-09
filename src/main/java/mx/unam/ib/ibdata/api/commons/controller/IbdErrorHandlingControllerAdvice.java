@@ -26,7 +26,7 @@ public class IbdErrorHandlingControllerAdvice {
 		error.setSuccess(false);
 		error.setCode(IbdResponseCodes.ERROR_HTTPS_400_BAD_REQUEST.getCode());
 		error.setMessage(IbdResponseCodes.ERROR_HTTPS_400_BAD_REQUEST.getMsg());
-		for (ConstraintViolation violation : e.getConstraintViolations()) {
+		for (ConstraintViolation<?> violation : e.getConstraintViolations()) {
 			error.getViolations().add(new IbdViolation(violation.getPropertyPath().toString(), violation.getMessage()));
 		}
 		return error;

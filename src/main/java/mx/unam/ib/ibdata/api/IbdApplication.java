@@ -5,12 +5,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "mx.unam.ib.ibdata.api")
 @EnableEncryptableProperties
+@EnableMongoRepositories
 public class IbdApplication extends SpringBootServletInitializer{
 
 	public static void main(String[] args) {

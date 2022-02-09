@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 
-@ApiModel(value= "IbdCriteriaDatOccurrenceVO", description = "Objeto del consulta para la tabla dat_occurrence")
+@ApiModel(value= "IbdCriteriaDatOccurrenceVO", description = "Objeto del consulta para la entidad dat_occurrence")
 public class IbdDatOccurrenceCriteriaVO  extends IbdGenericCriteria{
 	
 	
@@ -20,7 +20,7 @@ public class IbdDatOccurrenceCriteriaVO  extends IbdGenericCriteria{
 	@ApiModelProperty(
 			name = "occurrenceId"
 			,notes = "Identificador unico de registro"
-			,example ="IBUNAM:MEXU:001010"
+			,example ="IBUNAM:MEXU:14622"
 //			,dataType = "Long"
 			,position = 1)
 	private String occurrenceId;

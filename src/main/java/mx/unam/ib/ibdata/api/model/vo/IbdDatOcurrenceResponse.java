@@ -4,11 +4,11 @@ import java.util.List;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import mx.unam.ib.ibdata.api.model.entity.IbdDatOcurrenceEntity;
+import mx.unam.ib.ibdata.api.model.collection.IbdDatOcurrenceCollection;
 
 
-@ApiModel(value= "IbdDatOcurrenceVO", description = "Descripcion del objeto IbdDatOcurrenceEntity")
-public class IbdDatOcurrenceVO  extends IbdGenericResponseVO{
+@ApiModel(value= "IbdDatOcurrenceResponse", description = "Descripcion del objeto IbdDatOcurrenceEntity")
+public class IbdDatOcurrenceResponse  extends IbdGenericResponseVO{
 
 	/**
 	 * 
@@ -45,11 +45,18 @@ public class IbdDatOcurrenceVO  extends IbdGenericResponseVO{
 	
 	
 	@ApiModelProperty(
-			name = "data"
-			,notes = "respuesta del servicio"
+			name = "urlDownloadReport"
+			,notes = "Url para descargar reporte en formato .xlsx"
 //			,dataType = "Long"
-			,position = 8)
-	List<IbdDatOcurrenceEntity> data;
+			,position = 9)
+	private String urlDownloadReport;
+	
+	@ApiModelProperty(
+			name = "data"
+			,notes = "Datos de respuesta del servicio"
+//			,dataType = "Long"
+			,position = 9)
+	private List<IbdDatOcurrenceCollection> data;
 
 
 	public Long getListSize() {
@@ -92,13 +99,23 @@ public class IbdDatOcurrenceVO  extends IbdGenericResponseVO{
 	}
 
 
-	public List<IbdDatOcurrenceEntity> getData() {
+	public List<IbdDatOcurrenceCollection> getData() {
 		return data;
 	}
 
 
-	public void setData(List<IbdDatOcurrenceEntity> data) {
+	public void setData(List<IbdDatOcurrenceCollection> data) {
 		this.data = data;
+	}
+
+
+	public String getUrlDownloadReport() {
+		return urlDownloadReport;
+	}
+
+
+	public void setUrlDownloadReport(String urlDownloadReport) {
+		this.urlDownloadReport = urlDownloadReport;
 	}
 
 }

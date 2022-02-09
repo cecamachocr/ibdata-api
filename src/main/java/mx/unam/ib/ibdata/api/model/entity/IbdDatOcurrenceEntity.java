@@ -125,7 +125,6 @@ public class IbdDatOcurrenceEntity implements Serializable{
 	@Column(name = "event_time", length = 2000)
 	private String eventTime;
 	
-	
 	@Column(name = "verbatim_event_date", length = 2000)
 	private String verbatimEventDate;
 	

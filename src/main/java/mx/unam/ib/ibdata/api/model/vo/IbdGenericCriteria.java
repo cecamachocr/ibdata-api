@@ -39,6 +39,8 @@ public class IbdGenericCriteria implements Serializable{
 	@Min(1)
 	@Max(100)
 	private int pageLimit;
+	
+	private String urlServer;
 
 	public int getPageNum() {
 		return pageNum;
@@ -54,6 +56,14 @@ public class IbdGenericCriteria implements Serializable{
 
 	public void setPageLimit(int pageLimit) {
 		this.pageLimit = pageLimit;
+	}
+
+	public String getUrlServer() {
+		return urlServer;
+	}
+
+	public void setUrlServer(String urlServer) {
+		this.urlServer = urlServer;
 	}
 	
 	

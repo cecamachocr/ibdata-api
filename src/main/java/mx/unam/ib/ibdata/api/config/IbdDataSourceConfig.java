@@ -1,60 +1,44 @@
 package mx.unam.ib.ibdata.api.config;
 
-import java.util.Properties;
+import java.util.Collection;
+import java.util.Collections;
 
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.Database;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
+
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 
 @Configuration
-public class IbdDataSourceConfig {
+public class IbdDataSourceConfig extends AbstractMongoClientConfiguration{
 	
-	@Autowired
-	private Environment environment;
+//	@Autowired
+//	private Environment environment;
 
-	@Bean(name = "postgresDataSource")
-	@Primary
-	@ConfigurationProperties(prefix = "spring.datasource")
-	public DataSource dataSource() {
-		
-		DriverManagerDataSource ds = new DriverManagerDataSource();
-		ds.setDriverClassName(environment.getRequiredProperty("spring.datasource.driverClassName"));
-		ds.setUrl(environment.getRequiredProperty("spring.datasource.url"));
-		ds.setUsername(environment.getRequiredProperty("spring.datasource.username"));
-		ds.setPassword(environment.getRequiredProperty("spring.datasource.password"));
-		return ds;
+	@Override
+	protected String getDatabaseName() {
+		// TODO Auto-generated method stub
+		return "ibdata_test";
 	}
 	
-	@Bean
-	public EntityManagerFactory entityManagerFactory(DataSource dataSource) {
+	@Override
+    public MongoClient mongoClient() {
+        //ConnectionString connectionString = new ConnectionString("mongodb+srv://root:Ccaj030909@cluster0.9svg8.mongodb.net/test?authSource=admin&replicaSet=atlas-vissu8-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true");
 		
-		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		vendorAdapter.setDatabase(Database.POSTGRESQL);
-		
-		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-		factory.setJpaVendorAdapter(vendorAdapter);
-		factory.setPackagesToScan("mx.unam.ib.ibdata.api.model.entity");
-		factory.setDataSource(dataSource);
-		
-		
-		Properties jpaProperties = new Properties(); 
-		jpaProperties.put("hibernate.show_sql", true);
-		jpaProperties.put("hibernate.format_sql", true);
-		
-		factory.setJpaProperties(jpaProperties);
-		
-		factory.afterPropertiesSet();
-		
-		return factory.getObject();
-	}
+		ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/?ssl=false");
+        
+		MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
+            .applyConnectionString(connectionString)
+            .build();
+        
+        return MongoClients.create(mongoClientSettings);
+    }
+ 
+	@Override
+    public Collection<String> getMappingBasePackages() {
+        return Collections.singleton("mx.unam.ib.ibdata.api.model.collection");
+    }
+	
 }
