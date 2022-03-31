@@ -23,68 +23,46 @@ public class IbdDatOccurrenceCriteriaVO  extends IbdGenericCriteria{
 			,example ="IBUNAM:MEXU:14622"
 //			,dataType = "Long"
 			,position = 1)
-	private String occurrenceId;
+	private String occurrence_id;
 	
 	@ApiModelProperty(
-			name = "idCountry"
-			,notes = "Identificador unico de pais"
-			,example ="1010"
+			name = "state"
+			,notes = "state"
+			,example ="Estado"
 //			,dataType = "Long"
-			,position = 2)
-	@Min(1)
-	@NotNull
-	private Integer idCountry;
-	
+			,position = 5)
+	private String state;
 	
 	@ApiModelProperty(
-			name = "scientificName"
-			,notes = "Nombre cientifico"
-			,example ="Randia aculeata L"
+			name = "grupo_biologico"
+			,notes = "grupo_biologico"
+			,example ="grupo_biologico"
 //			,dataType = "Long"
-			,position = 3)
-	private String scientificName;
-	
-	
-	@ApiModelProperty(
-			name = "acceptedNameUsage"
-			,notes = "Nombre aceptado en uso"
-			,example ="Randia aculeata L"
-//			,dataType = "Long"
-			,position = 4)
-	private String acceptedNameUsage;
-	
-	
+			,position = 5)
+	private String grupo_biologico;
 
-	public String getOccurrenceId() {
-		return occurrenceId;
+	public String getOccurrence_id() {
+		return occurrence_id;
 	}
 
-	public void setOccurrenceId(String occurrenceId) {
-		this.occurrenceId = occurrenceId;
+	public void setOccurrence_id(String occurrence_id) {
+		this.occurrence_id = occurrence_id;
 	}
 
-	public Integer getIdCountry() {
-		return idCountry;
+	public String getState() {
+		return state;
 	}
 
-	public void setIdCountry(Integer idCountry) {
-		this.idCountry = idCountry;
+	public void setState(String state) {
+		this.state = state;
 	}
 
-	public String getScientificName() {
-		return scientificName;
+	public String getGrupo_biologico() {
+		return grupo_biologico;
 	}
 
-	public void setScientificName(String scientificName) {
-		this.scientificName = scientificName;
-	}
-
-	public String getAcceptedNameUsage() {
-		return acceptedNameUsage;
-	}
-
-	public void setAcceptedNameUsage(String acceptedNameUsage) {
-		this.acceptedNameUsage = acceptedNameUsage;
+	public void setGrupo_biologico(String grupo_biologico) {
+		this.grupo_biologico = grupo_biologico;
 	}
 	
 	

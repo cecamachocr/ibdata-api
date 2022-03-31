@@ -9,5 +9,7 @@ public interface IbdDatOccurrenceServiceInterface {
 	
 	public IbdDatOcurrenceResponse findUserByIdCountryDAO(IbdDatOccurrenceCriteriaVO req) throws Exception;
 	
-	public IbdDatOcurrenceResponse findByOcurrenceId(IbdDatOccurrenceCriteriaVO req) throws Exception;
+	public IbdDatOcurrenceResponse findByCriteria(IbdDatOccurrenceCriteriaVO req) throws Exception;
+	
+	public IbdDatOcurrenceResponse findByCriteriaLimit(IbdDatOccurrenceCriteriaVO req) throws Exception;
 }

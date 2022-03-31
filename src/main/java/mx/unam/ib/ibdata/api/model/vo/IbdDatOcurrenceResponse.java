@@ -48,74 +48,78 @@ public class IbdDatOcurrenceResponse  extends IbdGenericResponseVO{
 			name = "urlDownloadReport"
 			,notes = "Url para descargar reporte en formato .xlsx"
 //			,dataType = "Long"
+			,position = 8)
+	private List<String> urlDownloadReport;
+	
+	
+	@ApiModelProperty(
+			name = "executionTime"
+			,notes = "tiempo de ejecucion en segundos"
+//			,dataType = "Long"
 			,position = 9)
-	private String urlDownloadReport;
+	private Double executionTime;
 	
 	@ApiModelProperty(
 			name = "data"
 			,notes = "Datos de respuesta del servicio"
 //			,dataType = "Long"
-			,position = 9)
+			,position = 10)
 	private List<IbdDatOcurrenceCollection> data;
-
 
 	public Long getListSize() {
 		return listSize;
 	}
 
-
 	public void setListSize(Long listSize) {
 		this.listSize = listSize;
 	}
-
 
 	public Long getTotalRows() {
 		return totalRows;
 	}
 
-
 	public void setTotalRows(Long totalRows) {
 		this.totalRows = totalRows;
 	}
-
 
 	public Long getPageNum() {
 		return pageNum;
 	}
 
-
 	public void setPageNum(Long pageNum) {
 		this.pageNum = pageNum;
 	}
-
 
 	public Long getPageLimit() {
 		return pageLimit;
 	}
 
-
 	public void setPageLimit(Long pageLimit) {
 		this.pageLimit = pageLimit;
 	}
 
+	public List<String> getUrlDownloadReport() {
+		return urlDownloadReport;
+	}
+
+	public void setUrlDownloadReport(List<String> urlDownloadReport) {
+		this.urlDownloadReport = urlDownloadReport;
+	}
+
+	public Double getExecutionTime() {
+		return executionTime;
+	}
+
+	public void setExecutionTime(Double executionTime) {
+		this.executionTime = executionTime;
+	}
 
 	public List<IbdDatOcurrenceCollection> getData() {
 		return data;
 	}
 
-
 	public void setData(List<IbdDatOcurrenceCollection> data) {
 		this.data = data;
-	}
-
-
-	public String getUrlDownloadReport() {
-		return urlDownloadReport;
-	}
-
-
-	public void setUrlDownloadReport(String urlDownloadReport) {
-		this.urlDownloadReport = urlDownloadReport;
 	}
 
 }

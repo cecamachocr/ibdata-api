@@ -9,10 +9,12 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 
+import mx.unam.ib.ibdata.api.repository.IbdResourceRepositoryImpl;
+
 @SpringBootApplication
 @ComponentScan(basePackages = "mx.unam.ib.ibdata.api")
 @EnableEncryptableProperties
-@EnableMongoRepositories
+@EnableMongoRepositories(repositoryBaseClass = IbdResourceRepositoryImpl.class)
 public class IbdApplication extends SpringBootServletInitializer{
 
 	public static void main(String[] args) {

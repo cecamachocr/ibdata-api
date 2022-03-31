@@ -26,7 +26,7 @@ public class IbdGenericCriteria implements Serializable{
 //			,dataType = "Long"
 			,position = 1)
 	@Min(1)
-	@Max(10000)
+	@Max(100000)
 	private int pageNum;
 	
 	
@@ -37,10 +37,36 @@ public class IbdGenericCriteria implements Serializable{
 //			,dataType = "Long"
 			,position = 2)
 	@Min(1)
-	@Max(100)
+	@Max(100000)
 	private int pageLimit;
 	
+	
+	@ApiModelProperty(
+			name = "urlServer"
+			,notes = "servidor"
+			,example ="https//localhost:8443/"
+//			,dataType = "Long"
+			,position = 3
+			,hidden = true)
 	private String urlServer;
+	
+	@ApiModelProperty(
+			name = "isFromAPI"
+			,notes = "isFromAPI"
+			,example ="false"
+//			,dataType = "Long"
+			,position = 4
+			,hidden = true)
+	private boolean isFromAPI;
+	
+	
+	@ApiModelProperty(
+			name = "totalRows"
+			,notes = "Numero total de registros de la consulta"
+			,example ="1"
+//			,dataType = "Long"
+			,position = 1)
+	private Long totalRows;
 
 	public int getPageNum() {
 		return pageNum;
@@ -64,6 +90,22 @@ public class IbdGenericCriteria implements Serializable{
 
 	public void setUrlServer(String urlServer) {
 		this.urlServer = urlServer;
+	}
+
+	public boolean isFromAPI() {
+		return isFromAPI;
+	}
+
+	public void setFromAPI(boolean isFromAPI) {
+		this.isFromAPI = isFromAPI;
+	}
+
+	public Long getTotalRows() {
+		return totalRows;
+	}
+
+	public void setTotalRows(Long totalRows) {
+		this.totalRows = totalRows;
 	}
 	
 	

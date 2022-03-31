@@ -81,6 +81,20 @@ public class IbdDatOcurrenceCollection {
 	private String id_country;
 	
 	@ApiModelProperty(
+			name = "id_state"
+			,notes = "id_state"
+//			,dataType = "Long"
+			,position = 1)
+	private String id_state;
+	
+	@ApiModelProperty(
+			name = "id_county"
+			,notes = "id_county"
+//			,dataType = "Long"
+			,position = 1)
+	private String id_county;
+	
+	@ApiModelProperty(
 			name = "catalog_number"
 			,notes = "catalog_number"
 //			,dataType = "Long"
@@ -123,6 +137,13 @@ public class IbdDatOcurrenceCollection {
 	private String bibliographic_citation;
 	
 	@ApiModelProperty(
+			name = "dynamic_properties"
+			,notes = "dynamic_properties"
+//			,dataType = "Long"
+			,position = 1)
+	private String dynamic_properties;
+	
+	@ApiModelProperty(
 			name = "language"
 			,notes = "language"
 //			,dataType = "Long"
@@ -158,6 +179,13 @@ public class IbdDatOcurrenceCollection {
 	private String record_number;
 	
 	@ApiModelProperty(
+			name = "life_stage"
+			,notes = "life_stage"
+//			,dataType = "Long"
+			,position = 1)
+	private String life_stage;
+	
+	@ApiModelProperty(
 			name = "event_date"
 			,notes = "event_date"
 //			,dataType = "Long"
@@ -177,6 +205,27 @@ public class IbdDatOcurrenceCollection {
 //			,dataType = "Long"
 			,position = 1)
 	private String dmonth;
+	
+	@ApiModelProperty(
+			name = "dday"
+			,notes = "dday"
+//			,dataType = "Long"
+			,position = 1)
+	private String dday;
+	
+	@ApiModelProperty(
+			name = "verbatim_event_date"
+			,notes = "verbatim_event_date"
+//			,dataType = "Long"
+			,position = 1)
+	private String verbatim_event_date;
+	
+	@ApiModelProperty(
+			name = "habitat"
+			,notes = "habitat"
+//			,dataType = "Long"
+			,position = 1)
+	private String habitat;
 	
 	@ApiModelProperty(
 			name = "higher_classification"
@@ -212,6 +261,34 @@ public class IbdDatOcurrenceCollection {
 //			,dataType = "Long"
 			,position = 1)
 	private String identified_by;
+    
+    @ApiModelProperty(
+			name = "locality"
+			,notes = "locality"
+//			,dataType = "Long"
+			,position = 1)
+	private String locality;
+	
+	@ApiModelProperty(
+			name = "verbatim_locality"
+			,notes = "verbatim_locality"
+//			,dataType = "Long"
+			,position = 1)
+	private String verbatim_locality;
+	
+	@ApiModelProperty(
+			name = "minimum_elevation_in_meters"
+			,notes = "minimum_elevation_in_meters"
+//			,dataType = "Long"
+			,position = 1)
+	private String minimum_elevation_in_meters;
+	
+	@ApiModelProperty(
+			name = "verbatim_elevation"
+			,notes = "verbatim_elevation"
+//			,dataType = "Long"
+			,position = 1)
+	private String verbatim_elevation;
 	
 	@ApiModelProperty(
 			name = "coleccion"
@@ -292,6 +369,20 @@ public class IbdDatOcurrenceCollection {
 	private String family;
 	
 	@ApiModelProperty(
+			name = "county"
+			,notes = "county"
+//			,dataType = "Long"
+			,position = 1)
+	private String county;
+	
+	@ApiModelProperty(
+			name = "state"
+			,notes = "state"
+//			,dataType = "Long"
+			,position = 1)
+	private String state;
+	
+	@ApiModelProperty(
 			name = "country"
 			,notes = "country"
 //			,dataType = "Long"
@@ -346,7 +437,6 @@ public class IbdDatOcurrenceCollection {
 //			,dataType = "Long"
 			,position = 1)
 	private String id_valida_anio_colecta;
-	
 
 	public String get_id() {
 		return _id;
@@ -428,6 +518,22 @@ public class IbdDatOcurrenceCollection {
 		this.id_country = id_country;
 	}
 
+	public String getId_state() {
+		return id_state;
+	}
+
+	public void setId_state(String id_state) {
+		this.id_state = id_state;
+	}
+
+	public String getId_county() {
+		return id_county;
+	}
+
+	public void setId_county(String id_county) {
+		this.id_county = id_county;
+	}
+
 	public String getCatalog_number() {
 		return catalog_number;
 	}
@@ -476,6 +582,14 @@ public class IbdDatOcurrenceCollection {
 		this.bibliographic_citation = bibliographic_citation;
 	}
 
+	public String getDynamic_properties() {
+		return dynamic_properties;
+	}
+
+	public void setDynamic_properties(String dynamic_properties) {
+		this.dynamic_properties = dynamic_properties;
+	}
+
 	public String getLanguage() {
 		return language;
 	}
@@ -516,6 +630,14 @@ public class IbdDatOcurrenceCollection {
 		this.record_number = record_number;
 	}
 
+	public String getLife_stage() {
+		return life_stage;
+	}
+
+	public void setLife_stage(String life_stage) {
+		this.life_stage = life_stage;
+	}
+
 	public String getEvent_date() {
 		return event_date;
 	}
@@ -538,6 +660,30 @@ public class IbdDatOcurrenceCollection {
 
 	public void setDmonth(String dmonth) {
 		this.dmonth = dmonth;
+	}
+
+	public String getDday() {
+		return dday;
+	}
+
+	public void setDday(String dday) {
+		this.dday = dday;
+	}
+
+	public String getVerbatim_event_date() {
+		return verbatim_event_date;
+	}
+
+	public void setVerbatim_event_date(String verbatim_event_date) {
+		this.verbatim_event_date = verbatim_event_date;
+	}
+
+	public String getHabitat() {
+		return habitat;
+	}
+
+	public void setHabitat(String habitat) {
+		this.habitat = habitat;
 	}
 
 	public String getHigher_classification() {
@@ -578,6 +724,38 @@ public class IbdDatOcurrenceCollection {
 
 	public void setIdentified_by(String identified_by) {
 		this.identified_by = identified_by;
+	}
+
+	public String getLocality() {
+		return locality;
+	}
+
+	public void setLocality(String locality) {
+		this.locality = locality;
+	}
+
+	public String getVerbatim_locality() {
+		return verbatim_locality;
+	}
+
+	public void setVerbatim_locality(String verbatim_locality) {
+		this.verbatim_locality = verbatim_locality;
+	}
+
+	public String getMinimum_elevation_in_meters() {
+		return minimum_elevation_in_meters;
+	}
+
+	public void setMinimum_elevation_in_meters(String minimum_elevation_in_meters) {
+		this.minimum_elevation_in_meters = minimum_elevation_in_meters;
+	}
+
+	public String getVerbatim_elevation() {
+		return verbatim_elevation;
+	}
+
+	public void setVerbatim_elevation(String verbatim_elevation) {
+		this.verbatim_elevation = verbatim_elevation;
 	}
 
 	public String getColeccion() {
@@ -668,6 +846,22 @@ public class IbdDatOcurrenceCollection {
 		this.family = family;
 	}
 
+	public String getCounty() {
+		return county;
+	}
+
+	public void setCounty(String county) {
+		this.county = county;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 	public String getCountry() {
 		return country;
 	}
@@ -731,5 +925,6 @@ public class IbdDatOcurrenceCollection {
 	public void setId_valida_anio_colecta(String id_valida_anio_colecta) {
 		this.id_valida_anio_colecta = id_valida_anio_colecta;
 	}
+
 
 }

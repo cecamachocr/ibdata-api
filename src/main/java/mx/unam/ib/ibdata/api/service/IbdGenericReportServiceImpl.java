@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -19,6 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.gson.Gson;
 
 import mx.unam.ib.ibdata.api.commons.IbdUtils;
@@ -59,12 +63,28 @@ public class IbdGenericReportServiceImpl implements IbdGenericReportServiceInter
 	}
 
 	public ByteArrayOutputStream downloadFileReport(String queryEncoded) throws Exception {
-
+		long initTime = System.currentTimeMillis();
 		ByteArrayOutputStream response = null;
-
+		
+		XSSFWorkbook workbook = new XSSFWorkbook();
+		XSSFSheet reqSheet = workbook.createSheet("request");
+		XSSFRow rowReq = null;
+		
+		int rowInformationCounter = 0;
 		try {
 
 			IbdExecuteServiceVO vo = IbdUtils.getDataFromBase64(queryEncoded);
+			
+			
+			rowReq = reqSheet.createRow(rowInformationCounter);
+			rowInformationCounter++;
+			XSSFCell cell0 = rowReq.createCell(0);
+			XSSFCell cell1 = rowReq.createCell(1);
+			
+			cell0.setCellValue("Información:");
+			ObjectMapper mapper = new ObjectMapper();
+			String json = mapper.writeValueAsString(vo);
+			cell1.setCellValue(json);
 
 			String interfaceClassName = vo.getInterfaceClass();
 			String methodName = vo.getMethodName();
@@ -76,7 +96,7 @@ public class IbdGenericReportServiceImpl implements IbdGenericReportServiceInter
 			
 			Class<?> castResponseClass = Class.forName(vo.getReturnTypeName());
 			
-			XSSFWorkbook workbook = new XSSFWorkbook();
+			
 
 			int countParams = params.size();
 
@@ -85,14 +105,22 @@ public class IbdGenericReportServiceImpl implements IbdGenericReportServiceInter
 
 			int countElement = 0;
 			for (Entry<Integer, IbdClaveValor> entry : params.entrySet()) {
-
+				
+				rowReq = reqSheet.createRow(rowInformationCounter);
+				rowInformationCounter++;
 				Class<?> c1azzParam = Class.forName(entry.getValue().getClave());
 				parametersTypes[countElement] = c1azzParam;
 
 				Gson gParam = new Gson();
 				Object vod = gParam.fromJson(entry.getValue().getValor(), c1azzParam);
+				ObjectMapper mapperParam = new ObjectMapper();
+				String jsonParam = mapperParam.writeValueAsString(vod);
+				cell0 = rowReq.createCell(0);
+				cell0.setCellValue("Petición:");
+				cell1 = rowReq.createCell(1);
+				cell1.setCellValue(jsonParam);
 				paramsObj[countElement] = vod;
-
+				
 				countElement++;
 			}
 
@@ -100,10 +128,18 @@ public class IbdGenericReportServiceImpl implements IbdGenericReportServiceInter
 
 			Object responseService = method.invoke(bean, paramsObj);
 			
-			List<String> headers = new ArrayList<String>();
-			
-
+			LinkedHashMap<String, String> genericHeaders = new LinkedHashMap<String, String>();
 			if (responseService.getClass().isAssignableFrom(castResponseClass)) {
+				ObjectMapper mapperRes = new ObjectMapper();
+				String jsonRes = mapperRes.writeValueAsString(responseService);
+				ObjectNode node = (ObjectNode) new ObjectMapper().readTree(jsonRes);
+				node.remove("data");
+				rowReq = reqSheet.createRow(rowInformationCounter);
+				cell0 = rowReq.createCell(0);
+				cell0.setCellValue("Respuesta:");
+				cell1 = rowReq.createCell(1);
+				cell1.setCellValue(node.toString());
+				rowInformationCounter++;
 				Field[] fields = responseService.getClass().getDeclaredFields();
 
 				for (Field field : fields) {
@@ -112,36 +148,48 @@ public class IbdGenericReportServiceImpl implements IbdGenericReportServiceInter
 						if (field.getType().isAssignableFrom(ArrayList.class)) {
 							field.setAccessible(true); 
 							List<?> value = (List<?>) field.get(responseService); 
-																							
+							int rowCounter = 1;
+							XSSFSheet sheet = workbook.createSheet("data");;
 							for (int i = 0; i < value.size(); i++) {
 								Object data = value.get(i);
 								Field[] fieldsDataVO = data.getClass().getDeclaredFields();
-								List<String> values = new ArrayList<String>();
+								
+								Map<String, String> dataValue = new HashMap<String, String>();
+								
 								for (Field fieldVO : fieldsDataVO) {
 									fieldVO.setAccessible(true);
 									String str = fieldVO.getName();
 									Object object = fieldVO.get(data);
-									if(i==0) {
-										headers.add(str);
-									}
-									values.add((String) object);
+									dataValue.put(str, (String) object);
+									genericHeaders.put(str, str);
 								}
-								if(i==0) {
-									
-								    XSSFSheet sheet = workbook.createSheet("data");
+								
+								XSSFRow row = null;
+								XSSFRow rowAux = null;
+								
+								if(i == 0) {
+									row = sheet.createRow(0);
+									rowAux = sheet.createRow(1);
+								}else {
+									row = sheet.createRow(rowCounter);
+								}
+								
+								int columCounter = 0;
+								for (Map.Entry<String, String> entry : genericHeaders.entrySet()) {
+									XSSFCell cell = row.createCell(columCounter);
 
-								    for (int r = 0; r < value.size() + 1 ; r++) {
-								      XSSFRow row = sheet.createRow(r);
-								      for(int c = 0; c < headers.size(); c++) {
-								        XSSFCell cell = row.createCell(c);
-								        if(r == 0) { //first row is for column headers
-								          cell.setCellValue(headers.get(c)); //content **must** be here for table column names
-								        } else {
-								          cell.setCellValue(values.get(c));
-								        }
-								      }
-								    }
+									if (i == 0) { // first row is for column headers
+										cell.setCellValue(entry.getValue()); // content **must** be here for table column
+																			// names
+										XSSFCell cellAux = rowAux.createCell(columCounter);
+										cellAux.setCellValue(dataValue.get(entry.getKey()));
+									} else {
+										cell.setCellValue(dataValue.get(entry.getKey()));
+									}
+									columCounter++;
 								}
+
+								rowCounter++;
 							}
 						}
 					}
@@ -150,6 +198,12 @@ public class IbdGenericReportServiceImpl implements IbdGenericReportServiceInter
 
 			
 			ByteArrayOutputStream stream = new ByteArrayOutputStream();
+			rowReq = reqSheet.createRow(rowInformationCounter);
+			cell0 = rowReq.createCell(0);
+			cell1 = rowReq.createCell(1);
+			cell0.setCellValue("Tiempo de ejecucion:");
+			long endTime = System.currentTimeMillis();
+			cell1.setCellValue((endTime - initTime)/ 1000D);
 			workbook.write(stream);
 			stream.close();
 			response = stream;
@@ -158,7 +212,7 @@ public class IbdGenericReportServiceImpl implements IbdGenericReportServiceInter
 			logger.error(e.getMessage(), e);
 			throw new Exception(e.getMessage(), e);
 		}
-
+		
 		return response;
 	}
 

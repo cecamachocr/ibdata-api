@@ -39,8 +39,8 @@ public class IbdDatOcurrenceMongoController extends IbdGenericController{
 	private IbdDatOccurrenceServiceInterface service;
 	
 	@ApiOperation(
-			value= "findByOcurrenceId"
-			, notes = "Obtiene informacion de dat_ocurrence por el ocurrenceId"
+			value= "findByCriteria"
+			, notes = "Obtiene informacion de dat_ocurrence"
 			, nickname = "operation_1"
 			, position = 1)
 	@ApiResponses(value = {
@@ -49,14 +49,15 @@ public class IbdDatOcurrenceMongoController extends IbdGenericController{
 			@ApiResponse(code = 401, message = "No autorizado", response = Exception.class),
 			@ApiResponse(code = 500, message = "Error interno del servidor", response = Exception.class) })
 	@RequestMapping(
-			path="/findByOcurrenceId"
+			path="/findByCriteria"
 			, method = RequestMethod.POST
 			, consumes = MediaType.APPLICATION_JSON_VALUE
 			, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody ResponseEntity<?> findByOcurrenceId(HttpServletRequest req, HttpServletResponse res, @Valid @RequestBody IbdDatOccurrenceCriteriaVO criteria) throws Exception{
+	@ResponseBody ResponseEntity<?> findByCriteria(HttpServletRequest req, HttpServletResponse res, @Valid @RequestBody IbdDatOccurrenceCriteriaVO criteria) throws Exception{
 		try {
 			criteria.setUrlServer(getUrlServer(req));
-			return ResponseEntity.ok().body(service.findByOcurrenceId(criteria));
+			criteria.setFromAPI(true);
+			return ResponseEntity.ok().body(service.findByCriteriaLimit(criteria));
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
